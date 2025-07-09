@@ -1,10 +1,10 @@
 // // app/api/middleware/withRole.js
 // import { getServerSession } from "next-auth";
-// import { authoptions } from "../auth/[...nextauth]/route";
+// import { authOptions } from "../auth/[...nextauth]/route";
 // import prisma from "@/lib/prisma";
 
 // export async function withRole(req, allowedRoles = []) {
-//   const session = await getServerSession(authoptions);
+//   const session = await getServerSession(authOptions);
 //   if (!session || !session.user?.email) {
 //     return { error: "Unauthorized", status: 401 };
 //   }
@@ -24,7 +24,7 @@
 
 // app/api/middleware/withRole.js
 import { getServerSession } from "next-auth"
-import { authoptions } from "../auth/[...nextauth]/options"
+import { authOptions } from "../auth/[...nextauth]/options"
 import { prisma } from '@/lib/prisma'
 
 
@@ -32,7 +32,7 @@ const ENABLE_LOGGING = process.env.DEBUG_AUTH === 'true' // ✅ Optional flag
 
 export async function withRole(req, allowedRoles = []) {
   try {
-    const session = await getServerSession(authoptions)
+    const session = await getServerSession(authOptions)
 
     if (!session || !session.user?.email) {
       if (ENABLE_LOGGING) console.warn("🔒 No session found")

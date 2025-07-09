@@ -1,10 +1,10 @@
 // import { prisma } from '@/lib/prisma'
 // import { getServerSession } from 'next-auth'
-// import { authoptions } from '@/app/api/auth/[...nextauth]/route'
+// import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 // import { NextResponse } from 'next/server'
 
 // export async function GET(_, { params }) {
-//   const session = await getServerSession(authoptions)
+//   const session = await getServerSession(authOptions)
 //   if (!session || session.user.role !== 'admin') {
 //     return new NextResponse('Unauthorized', { status: 401 })
 //   }
@@ -39,11 +39,11 @@
 
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
-import { authoptions } from '@/app/api/auth/[...nextauth]/options' // ✅ fix import path
+import { authOptions } from '@/app/api/auth/[...nextauth]/options' // ✅ fix import path
 import { NextResponse } from 'next/server'
 
 export async function GET(req, { params }) {
-  const session = await getServerSession(authoptions)
+  const session = await getServerSession(authOptions)
 
   if (!session || session.user.role !== 'admin') {
     return new NextResponse('Unauthorized', { status: 401 })

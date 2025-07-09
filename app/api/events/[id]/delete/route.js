@@ -1,11 +1,11 @@
 // // // app/api/events/[id]/delete/route.js
 // // import { getServerSession } from 'next-auth'
-// // import { authoptions } from '@/app/api/auth/[...nextauth]/route'
+// // import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 // // import { prisma } from '@/lib/prisma'
 // // import { NextResponse } from 'next/server'
 
 // // export async function DELETE(_, { params }) {
-// //   const session = await getServerSession(authoptions)
+// //   const session = await getServerSession(authOptions)
 
 // //   if (!session || session.user.role !== 'admin') {
 // //     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -27,12 +27,12 @@
 
 // // app/api/events/[id]/delete/route.js
 // import { getServerSession } from 'next-auth'
-// import { authoptions } from '@/app/api/auth/[...nextauth]/options'
+// import { authOptions } from '@/app/api/auth/[...nextauth]/options'
 // import { prisma } from '@/lib/prisma'
 // import { NextResponse } from 'next/server'
 
 // export async function DELETE(_, { params }) {
-//   const session = await getServerSession(authoptions)
+//   const session = await getServerSession(authOptions)
 
 //   if (!session || session.user.role !== 'admin') {
 //     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -54,12 +54,12 @@
 
 // /api/events/[id]/delete/route.js
 import { getServerSession } from 'next-auth'
-import { authoptions } from '@/app/api/auth/[...nextauth]/options'
+import { authOptions } from '@/app/api/auth/[...nextauth]/options'
 import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
 export async function DELETE(_, { params }) {
-  const session = await getServerSession(authoptions)
+  const session = await getServerSession(authOptions)
 
   if (!session || session.user.role !== 'admin') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

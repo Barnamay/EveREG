@@ -1,9 +1,9 @@
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
-import { authoptions } from '@/app/api/auth/[...nextauth]/options'
+import { authOptions } from '@/app/api/auth/[...nextauth]/options'
 
 export async function PUT(req) {
-  const session = await getServerSession(authoptions)
+  const session = await getServerSession(authOptions)
 
   if (!session || session.user.role !== 'admin') {
     return new Response('Unauthorized', { status: 401 })

@@ -1,11 +1,11 @@
 // app/api/events/[id]/unapprove/route.js
 import { getServerSession } from 'next-auth'
-import { authoptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
 export async function PUT(_, { params }) {
-  const session = await getServerSession(authoptions)
+  const session = await getServerSession(authOptions)
 
   if (!session || session.user.role !== 'admin') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
