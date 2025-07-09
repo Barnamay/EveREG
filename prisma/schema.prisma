@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // or "mysql" — replace accordingly
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uid       Int       @id @default(autoincrement())
+  username  String
+  email     String    @unique
+  password  String
+  role      Role      @default(participant)
+  createdAt DateTime  @default(now())
+  name       String?
+  age        Int ?
+  phone      String?
+  district   String?
+  state      String?
+  pincode    String?
+
+  registrations Registration[]
+  createdEvents Event[]     @relation("CreatedBy")
+  results       Result[]
+  operatorRequest OperatorRequest?
+}
+
+model Event {
+  event_id     Int          @id @default(autoincrement())
+  title        String
+  description  String?
+  date         DateTime  @db.Date       // ✅ only the date part
+  time         DateTime  @db.Time
+  created_by   Int?
+  is_approved  Boolean      @default(false)
+  is_published Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  is_deleted   Boolean      @default(false)
+
+  creator      User?        @relation("CreatedBy", fields: [created_by], references: [uid])
+  registrations Registration[]
+  results       Result[]
+}
+
+model Registration {
+  reg_id     Int      @id @default(autoincrement())
+  uid        Int
+  event_id   Int
+  registeredAt DateTime @default(now())
+
+  user   User  @relation(fields: [uid], references: [uid])
+  event  Event @relation(fields: [event_id], references: [event_id])
+}
+
+model Result {
+  uid       Int
+  event_id  Int
+  position  Int
+  score     Float
+
+  user   User  @relation(fields: [uid], references: [uid])
+  event  Event @relation(fields: [event_id], references: [event_id])
+
+  @@id([uid, event_id])
+}
+
+enum Role {
+  admin
+  operator
+  participant
+  prouser
+}
+
+model OperatorRequest {
+  id         Int      @id @default(autoincrement())
+  uid        Int      @unique
+  reason     String?
+  status     String   @default("pending") // pending, approved, rejected
+  requestedAt DateTime @default(now())
+
+  user       User     @relation(fields: [uid], references: [uid])
+}
