@@ -126,7 +126,7 @@ const ProfilePage = ({ params }) => {
             {[...Array(6)].map((_, i) => (
               <li key={i} className='flex items-center space-x-3'>
                 <img width={35} className='rounded-full' src='/avt.gif' alt='avatar' />
-                <span><b>Argha</b> donated <b>$30</b> — "Great work Vi 💙💖💙"</span>
+                <span><b>Argha</b> donated <b>$30</b> — &quot;Great work Vi 💙💖💙&quot;</span>
               </li>
             ))}
           </ul>
