@@ -17,13 +17,13 @@ const Footer = () => {
           <div>
             <p className="text-sm md:text-base font-semibold text-cyan-300 animate-pulse">Created by Barnamay Chowdhury ❤️</p>
             <div className="flex gap-3 text-xl mt-1">
-              <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
+              <a href="https://github.com/Barnamay" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
                 <FaGithub title="GitHub" />
               </a>
-              <a href="mailto:your@email.com" className="hover:text-cyan-400 transition">
+              <a href="mailto:barnamay1234@gmail.com" className="hover:text-cyan-400 transition">
                 <FaEnvelope title="Email" />
               </a>
-              <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
+              <a href="https://linkedin.com/in/barnamay-chowdhury-614524257" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
                 <FaLinkedin title="LinkedIn" />
               </a>
             </div>
